@@ -22,9 +22,10 @@ class InventoryRepositoryTest {
     void addGuitar() {
         Guitar g = new Guitar("121533619", 850.00, "Bob", "Stratocaster",
                 "Electric", "Oak", "Birch");
-        inventoryRepository.addGuitar(g);
+        inventoryRepository.addGuitar(g);=
 
-
+        assertEquals("Bob", g.getBuilder());
+        assertEquals("Stratocaster", g.getModel());
     }
 
     @Test
@@ -33,8 +34,9 @@ class InventoryRepositoryTest {
                 "Electric", null, "Pine");
         inventoryRepository.addGuitar(g);
 
-        File file = new File("guitars_database.txt");
-        assertTrue(file.exists());
+        Guitar getter = inventoryRepository.getGuitar("121536");
+        assertEquals("Jeremy", getter.getBuilder());
+        assertEquals("Stratocaster", getter.getModel());
     }
 
     @Test
