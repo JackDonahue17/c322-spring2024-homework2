@@ -21,13 +21,16 @@ public class InventoryRepository {
     }
 
     public Guitar getGuitar(String serialNumber) {
+        Guitar g = new Guitar(null, 0, null, null, null, null, null);
         try (BufferedReader reader = new BufferedReader(new FileReader(DATABASE_NAME))) {
             String newLine = "";
             while(reader.readLine() != null) {
                 newLine = reader.readLine();
                 String[] words = newLine.split(",");
                 if(words.length == 7 && words[0].equals(serialNumber)) {
-                    return new Guitar(words[0], Double.parseDouble(words[1]), words[2], words[3], words[4], words[5], words[6]);
+                    g =  new Guitar(words[0], Double.parseDouble(words[1]), g.stringToBuilder(words[2]),
+                            words[3], g.stringToType(words[4]), g.stringToWood(words[5]), g.stringToWood(words[6]));
+                    return g;
                 }
             }
         } catch (IOException e) {
@@ -46,12 +49,13 @@ public class InventoryRepository {
                 if(words.length == 7
                         && (g.getSerialNumber() == null|| words[0].equals(g.getSerialNumber()))
                         && (g.getPrice() == 0 || Double.parseDouble(words[2]) == g.getPrice())
-                        && (g.getBuilder() == null || words[2].equals(g.getBuilder()))
+                        && (g.getBuilder() == null || words[2].equals(g.getBuilder().toString()))
                         && (g.getModel() == null || words[3].equals(g.getModel()))
-                        && (g.getType() == null || words[4].equals(g.getType()))
-                        && (g.getBackWood() == null|| words[5].equals(g.getBackWood()))
-                        && (g.getTopWood() == null || words[6].equals(g.getTopWood()))) {
-                    Guitar newGuitar =  new Guitar(words[0], Double.parseDouble(words[1]), words[2], words[3], words[4], words[5], words[6]);
+                        && (g.getType() == null || words[4].equals(g.getType().toString()))
+                        && (g.getBackWood() == null|| words[5].equals(g.getBackWood().toString()))
+                        && (g.getTopWood() == null || words[6].equals(g.getTopWood().toString()))) {
+                    Guitar newGuitar =  new Guitar(words[0], Double.parseDouble(words[1]), g.stringToBuilder(words[2]),
+                            words[3], g.stringToType(words[4]), g.stringToWood(words[5]), g.stringToWood(words[6]));
                     result.add(newGuitar);
                 }
             }

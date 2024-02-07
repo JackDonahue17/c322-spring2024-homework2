@@ -15,11 +15,11 @@ public class InventoryController {
     public List<Guitar> searchGuitars
             (@RequestParam String serialNumber,
              @RequestParam double price,
-             @RequestParam String builder,
-            @RequestParam String model,
-            @RequestParam String type,
-            @RequestParam String backWood,
-            @RequestParam String topWood) {
+             @RequestParam Guitar.Builder builder,
+             @RequestParam String model,
+             @RequestParam Guitar.Type type,
+             @RequestParam Guitar.Wood backWood,
+             @RequestParam Guitar.Wood topWood) {
         Guitar g = new Guitar(serialNumber, price, builder, model, type, backWood, topWood);
         return inventoryRepository.search(g);
     }
