@@ -35,7 +35,7 @@ jobs:
           fail-on-error: true
 
       - name: Build and push the image
-        run:
+        run: |
           docker login --username JackDonahue17 --password ${{secrets.ACCESS_TOKEN}} ghcr.io
           docker build -t ghcr.io/jackfd17/c322-spring2024-homework2:latest --file Dockerfile .
           docker push ghcr.io/jackfd17/c322-spring2024-homework2:latest
