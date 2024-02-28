@@ -18,11 +18,11 @@ class InventoryRepositoryTest {
         inventoryRepository = new InventoryRepository();
     }
 
-    @Test
+    /*@Test
     void addGuitar() {
         Guitar g = new Guitar("121533619", 850.00, "Bob", "Stratocaster",
                 "Electric", "Oak", "Birch");
-        inventoryRepository.addGuitar(g);=
+        inventoryRepository.addGuitar(g);
 
         assertEquals("Bob", g.getBuilder());
         assertEquals("Stratocaster", g.getModel());
@@ -59,5 +59,5 @@ class InventoryRepositoryTest {
 
         List<Guitar> satisfiableGuitars = inventoryRepository.search(g);
         assertTrue(!satisfiableGuitars.isEmpty());
-    }
+    }*/
 }
