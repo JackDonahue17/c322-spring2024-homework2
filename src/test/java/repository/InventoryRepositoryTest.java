@@ -13,7 +13,6 @@ class InventoryRepositoryTest {
 
     private InventoryRepository inventoryRepository;
 
-    @BeforeEach
     void setUp() {
         inventoryRepository = new InventoryRepository();
     }
